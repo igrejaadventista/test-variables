@@ -70,11 +70,11 @@ jobs:
         task-definition: task-definition.json
         container-name: testvariables
         image: 449474385124.dkr.ecr.us-east-1.amazonaws.com/testvariables
-        executionRoleArn: arn:aws:iam::449474385124:role/ecsTaskExecutionRole
-        awslogs-group: /ecs/testvariables
-        family: testvariables
-        taskRoleArn: arn:aws:iam::449474385124:role/ecsTaskExecutionRole
-        
+        # executionRoleArn: arn:aws:iam::449474385124:role/ecsTaskExecutionRole
+        # awslogs-group: /ecs/testvariables
+        # family: testvariables
+        # taskRoleArn: arn:aws:iam::449474385124:role/ecsTaskExecutionRole
+
     - name: Fill in the new image ID in the Amazon ECS task definition
       id: task-def
       uses: aws-actions/amazon-ecs-render-task-definition@v1

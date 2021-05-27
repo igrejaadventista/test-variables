@@ -1,6 +1,6 @@
 {
   "ipcMode": null,
-  "executionRoleArn": "",
+  "executionRoleArn": "arn:aws:iam::449474385124:role/ecsTaskExecutionRole",
   "containerDefinitions": [
     {
       "dnsSearchDomains": null,
@@ -9,7 +9,7 @@
         "logDriver": "awslogs",
         "secretOptions": null,
         "options": {
-          "awslogs-group": "",
+          "awslogs-group": "/ecs/testvariables",
           "awslogs-region": "us-east-1",
           "awslogs-stream-prefix": "ecs"
         }
@@ -59,8 +59,8 @@
   ],
   "placementConstraints": [],
   "memory": null,
-  "taskRoleArn": "",
-  "family": "",
+  "taskRoleArn": "arn:aws:iam::449474385124:role/ecsTaskExecutionRole",
+  "family": "testvariables",
   "requiresAttributes": [
     {
       "targetId": null,
