@@ -69,7 +69,7 @@ jobs:
       with:
         task-definition: task-definition.json
         container-name: testvariables
-        image: 449474385124.dkr.ecr.us-east-1.amazonaws.com/testvariables
+        image: ${{ steps.build-image.outputs.image }}
         # executionRoleArn: arn:aws:iam::449474385124:role/ecsTaskExecutionRole
         # awslogs-group: /ecs/testvariables
         # family: testvariables
@@ -89,4 +89,4 @@ jobs:
         task-definition: ${{ steps.render-web-container.outputs.task-definition }}
         service: ${{ secrets.ECS_TASK }}
         cluster: IASD
-        wait-for-service-stability: true
+        wait-for-service-stability: false
