@@ -1,6 +1,6 @@
 {
   "ipcMode": null,
-  "executionRoleArn": "arn:aws:iam::449474385124:role/ecsTaskExecutionRole",
+  "executionRoleArn": "arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/ecsTaskExecutionRole",
   "containerDefinitions": [
     {
       "dnsSearchDomains": null,
@@ -9,7 +9,7 @@
         "logDriver": "awslogs",
         "secretOptions": null,
         "options": {
-          "awslogs-group": "/ecs/testvariables",
+          "awslogs-group": "/ecs/${{ secrets.ECS_TASK }}",
           "awslogs-region": "us-east-1",
           "awslogs-stream-prefix": "ecs"
         }
@@ -37,7 +37,7 @@
       "memoryReservation": null,
       "volumesFrom": [],
       "stopTimeout": null,
-      "image": "449474385124.dkr.ecr.us-east-1.amazonaws.com/testvariables",
+      "image": "${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-1.amazonaws.com/${{ secrets.ECS_TASK }}",
       "startTimeout": null,
       "firelensConfiguration": null,
       "dependsOn": null,
@@ -54,13 +54,13 @@
       "dockerLabels": null,
       "systemControls": null,
       "privileged": null,
-      "name": "testvariables"
+      "name": "${{ secrets.ECS_TASK }}"
     }
   ],
   "placementConstraints": [],
   "memory": null,
-  "taskRoleArn": "arn:aws:iam::449474385124:role/ecsTaskExecutionRole",
-  "family": "testvariables",
+  "taskRoleArn": "arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/ecsTaskExecutionRole",
+  "family": "${{ secrets.ECS_TASK }}",
   "requiresAttributes": [
     {
       "targetId": null,

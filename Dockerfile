@@ -7,6 +7,6 @@ COPY extras/start-apache /usr/local/bin
 COPY --chown=www-data:www-data app /var/www/html
 
 ENV DOCKER docker
-ENV GITHUB $GIHUB_SECRET
+ENV GITHUB=/$secrets.GIHUB_SECRET
 
 CMD ["start-apache"]
