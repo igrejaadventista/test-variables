@@ -62,20 +62,22 @@ jobs:
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG --build-arg GIHUB_SECRET='${{ secrets.GIHUB_SECRET }}' .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
-        sed -i 's/ECSTASK/testvariables/' task-definition.json && sed -i 's/AWSACCID/449474385124/' task-definition.json
+        echo "Processa task-definition.json"
+        sed -i 's/ECSTASK/${{ secrets.ECS_TASK }}/' task-definition.json && sed -i 's/AWSACCID/${{ secrets.AWS_ACCOUNT_ID }}/' task-definition.json
+        echo "fim do processamento"
 
     - name: Fill in the new image ID in the Amazon ECS task definition
       id: task-def
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
         task-definition: task-definition.json
-        container-name: testvariables
+        container-name: ${{ secrets.ECS_TASK }}
         image: ${{ steps.build-image.outputs.image }}
 
     - name: Deploy Amazon ECS task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
         task-definition: ${{ steps.task-def.outputs.task-definition }}
-        service: testvariables
+        service: ${{ secrets.ECS_TASK }}
         cluster: IASD
         wait-for-service-stability: true
