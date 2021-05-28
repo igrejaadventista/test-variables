@@ -64,7 +64,7 @@ jobs:
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
         echo "Processa task-definition.json"
         sed -i 's/ECSTASK/${{ secrets.ECS_TASK }}/' task-definition.json && sed -i 's/AWSACCID/${{ secrets.AWS_ACCOUNT_ID }}/' task-definition.json
-        echo "fim do processamento"
+        echo "Fim do processamento"
 
     - name: Fill in the new image ID in the Amazon ECS task definition
       id: task-def
